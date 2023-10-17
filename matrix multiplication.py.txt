@@ -1,0 +1,50 @@
+'''
+
+                            Online Python Compiler.
+                Code, Compile, Run and Debug python program online.
+Write your code in this editor and press "Run" button to execute it.
+
+'''
+ArangeX = 3
+ArangeY = 2
+BrangeX = 7
+wait = 0.25
+margin = 1
+
+print(f"create matrixA {ArangeX} {ArangeY} 1 as blue")
+print(f"create matrixB {BrangeX} {ArangeX} 1 as red")
+print(f"create matrixC {BrangeX} {ArangeY} 1 as yellow")
+
+print(f"setPosition matrixB {ArangeX * 1.1 + margin} {ArangeY *1.1 + margin} 0")
+print(f"setPosition matrixC {ArangeX * 1.1 + margin} 0 0")
+
+print("setAllCubesStyle matrixA hidden")
+print("setAllCubesStyle matrixB hidden")
+print(f"wait {wait}")
+lastA = []
+lastB = []
+lastC = []
+
+for y in range(ArangeY):
+    for x in range(BrangeX):
+        if len(lastC) > 0:
+            print(f"changeBlockStyle matrixC {lastC[0]} {lastC[1]} 0 to normal")
+        print(f"changeBlockStyle matrixC {x} {y} 0 to selected")
+        lastC = [x,y]
+        
+        for r in range(ArangeX):
+            if len(lastA) > 0:
+                print(f"changeBlockStyle matrixA {lastA[0]} {lastA[1]} 0 to normal")
+            if len(lastB) > 0:
+                print(f"changeBlockStyle matrixB {lastB[0]} {lastB[1]} 0 to normal")
+                    
+            print(f"changeBlockStyle matrixA {r} {y} 0 to selected")
+            print(f"changeBlockStyle matrixB {x} {r} 0 to selected")
+            print(f"wait {wait}")
+            lastA = [r, y]
+            lastB = [x, r]
+            
+print(f"changeBlockStyle matrixC {lastC[0]} {lastC[1]} 0 to normal")
+print(f"changeBlockStyle matrixA {lastA[0]} {lastA[1]} 0 to normal")
+print(f"changeBlockStyle matrixB {lastB[0]} {lastB[1]} 0 to normal")
+        

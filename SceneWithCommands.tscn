@@ -1,0 +1,101 @@
+[gd_scene load_steps=15 format=3 uid="uid://w8x3xd1hmwka"]
+
+[ext_resource type="Script" path="res://camera.gd" id="1_qudkr"]
+[ext_resource type="Script" path="res://CommandParserAndExecutor.gd" id="2_r0eia"]
+[ext_resource type="Script" path="res://StyleManager.gd" id="3_qj3ly"]
+[ext_resource type="Script" path="res://Style.gd" id="4_145dm"]
+
+[sub_resource type="Environment" id="Environment_iy8it"]
+background_mode = 1
+background_color = Color(0.701961, 0.705882, 0.694118, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s5p1q"]
+albedo_color = Color(0.231373, 0.764706, 0.541176, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5pt52"]
+albedo_color = Color(0.0823529, 0.486275, 0.392157, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e01e0"]
+albedo_color = Color(0.117647, 0.47451, 0.588235, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g03tn"]
+albedo_color = Color(0.862745, 0.352941, 0.729412, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tdijs"]
+albedo_color = Color(0.623529, 0, 0.243137, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o4bla"]
+albedo_color = Color(1, 0.00392157, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yx8tk"]
+albedo_color = Color(0.92549, 0.729412, 0.462745, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0cs6t"]
+albedo_color = Color(0.921569, 0.819608, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6o8mc"]
+albedo_color = Color(0.745098, 0.560784, 0.133333, 1)
+
+[node name="Camera3D" type="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 5, 15)
+environment = SubResource("Environment_iy8it")
+script = ExtResource("1_qudkr")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5766, 0)
+
+[node name="Commands" type="Node" parent="." node_paths=PackedStringArray("styleManager")]
+script = ExtResource("2_r0eia")
+commands = "create matrixA 4 10 1 as blue"
+styleManager = NodePath("../StyleManager")
+
+[node name="StyleManager" type="Node" parent="." node_paths=PackedStringArray("styles")]
+script = ExtResource("3_qj3ly")
+styles = [NodePath("blue"), NodePath("red"), NodePath("yellow")]
+
+[node name="blue" type="Node" parent="StyleManager"]
+script = ExtResource("4_145dm")
+styleName = "blue"
+
+[node name="hidden" type="CSGBox3D" parent="StyleManager/blue"]
+material = SubResource("StandardMaterial3D_s5p1q")
+
+[node name="selected" type="CSGBox3D" parent="StyleManager/blue"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+material = SubResource("StandardMaterial3D_5pt52")
+
+[node name="normal" type="CSGBox3D" parent="StyleManager/blue"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+material = SubResource("StandardMaterial3D_e01e0")
+
+[node name="red" type="Node" parent="StyleManager"]
+script = ExtResource("4_145dm")
+styleName = "red"
+
+[node name="hidden" type="CSGBox3D" parent="StyleManager/red"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.91158, 0, -2.2083)
+material = SubResource("StandardMaterial3D_g03tn")
+
+[node name="selected" type="CSGBox3D" parent="StyleManager/red"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.422648, 0, -2.2083)
+material = SubResource("StandardMaterial3D_tdijs")
+
+[node name="normal" type="CSGBox3D" parent="StyleManager/red"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.762843, 0, -2.2083)
+material = SubResource("StandardMaterial3D_o4bla")
+
+[node name="yellow" type="Node" parent="StyleManager"]
+script = ExtResource("4_145dm")
+styleName = "yellow"
+
+[node name="hidden" type="CSGBox3D" parent="StyleManager/yellow"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.14142, 0, 0)
+material = SubResource("StandardMaterial3D_yx8tk")
+
+[node name="selected" type="CSGBox3D" parent="StyleManager/yellow"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.78904, 0, 0)
+material = SubResource("StandardMaterial3D_0cs6t")
+
+[node name="normal" type="CSGBox3D" parent="StyleManager/yellow"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9863, 0, 0)
+material = SubResource("StandardMaterial3D_6o8mc")
