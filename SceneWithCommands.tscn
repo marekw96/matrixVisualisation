@@ -47,7 +47,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5766, 0)
 
 [node name="Commands" type="Node" parent="." node_paths=PackedStringArray("styleManager")]
 script = ExtResource("2_r0eia")
-commands = "create matrixA 4 10 1 as blue"
 styleManager = NodePath("../StyleManager")
 
 [node name="StyleManager" type="Node" parent="." node_paths=PackedStringArray("styles")]
