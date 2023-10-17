@@ -42,6 +42,9 @@ func parseCommand(cmd):
 
 	if cmd[0] == "rotate":
 		rotate(cmd[1], float(cmd[2]),float(cmd[3]),float(cmd[4]))
+	
+	if cmd[0] == "clearCubes":
+		clearCubes(cmd)
 		
 func createCube(name, x, y,z, styleName):
 	var cube = CubeCreator.new()
@@ -120,6 +123,12 @@ func rotate(cubeName, x,y,z):
 		return
 		
 	cube.set_rotation_degrees(Vector3(x,y,z))
+	
+func clearCubes(cmds):
+	for cube in cubes:
+		cube['cube'].queue_free()
+	
+	cubes = []
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
