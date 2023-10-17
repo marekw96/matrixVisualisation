@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://w8x3xd1hmwka"]
+[gd_scene load_steps=16 format=3 uid="uid://w8x3xd1hmwka"]
 
 [ext_resource type="Script" path="res://camera.gd" id="1_qudkr"]
 [ext_resource type="Script" path="res://CommandParserAndExecutor.gd" id="2_r0eia"]
 [ext_resource type="Script" path="res://StyleManager.gd" id="3_qj3ly"]
 [ext_resource type="Script" path="res://Style.gd" id="4_145dm"]
+[ext_resource type="Script" path="res://UIControl.gd" id="5_auhvp"]
 
 [sub_resource type="Environment" id="Environment_iy8it"]
 background_mode = 1
@@ -99,3 +100,27 @@ material = SubResource("StandardMaterial3D_0cs6t")
 [node name="normal" type="CSGBox3D" parent="StyleManager/yellow"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9863, 0, 0)
 material = SubResource("StandardMaterial3D_6o8mc")
+
+[node name="Control" type="Control" parent="." node_paths=PackedStringArray("scriptCode", "executionButton", "commadExecutor")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 600.0
+offset_bottom = 578.0
+script = ExtResource("5_auhvp")
+scriptCode = NodePath("VBoxContainer/CodeEdit")
+executionButton = NodePath("VBoxContainer/Button")
+commadExecutor = NodePath("../Commands")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 0
+offset_right = 366.0
+offset_bottom = 385.0
+
+[node name="CodeEdit" type="CodeEdit" parent="Control/VBoxContainer"]
+custom_minimum_size = Vector2(0, 350)
+layout_mode = 2
+highlight_current_line = true
+
+[node name="Button" type="Button" parent="Control/VBoxContainer"]
+layout_mode = 2
+text = "Execute"

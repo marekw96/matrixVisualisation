@@ -1,4 +1,4 @@
-extends Node
+class_name CommandParserAndExecutor extends Node
 
 @export_multiline  var commands:String
 @export var styleManager: StyleManager
@@ -11,6 +11,9 @@ var waitTime = 0
 
 func _ready():
 	parse(commands)
+	started = true
+
+func start():
 	started = true
 
 func parse(txt):
