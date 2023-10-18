@@ -22,7 +22,7 @@ func generate():
 		for y in range(height):
 			for x in range(width):
 				var blockInstance = CSGBox3D.new()
-				blockInstance.position = Vector3(x * (1 + space),y * (1+space),z * (1+space))
+				blockInstance.position = Vector3(x * (1 + space),y * (1+space),-1 * z * (1+space))
 				blockInstance.material = hiddenMaterial
 				add_child(blockInstance)
 
