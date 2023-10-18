@@ -1,16 +1,19 @@
-[gd_scene load_steps=16 format=3 uid="uid://w8x3xd1hmwka"]
+[gd_scene load_steps=17 format=3 uid="uid://w8x3xd1hmwka"]
 
 [ext_resource type="Script" path="res://camera.gd" id="1_qudkr"]
 [ext_resource type="Script" path="res://CommandParserAndExecutor.gd" id="2_r0eia"]
 [ext_resource type="Script" path="res://StyleManager.gd" id="3_qj3ly"]
 [ext_resource type="Script" path="res://Style.gd" id="4_145dm"]
 [ext_resource type="Script" path="res://UIControl.gd" id="5_auhvp"]
+[ext_resource type="Script" path="res://HelpLabel.gd" id="6_uxxak"]
 
 [sub_resource type="Environment" id="Environment_iy8it"]
 background_mode = 1
 background_color = Color(0.701961, 0.705882, 0.694118, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s5p1q"]
+transparency = 1
+blend_mode = 3
 albedo_color = Color(0.231373, 0.764706, 0.541176, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5pt52"]
@@ -20,6 +23,8 @@ albedo_color = Color(0.0823529, 0.486275, 0.392157, 1)
 albedo_color = Color(0.117647, 0.47451, 0.588235, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g03tn"]
+transparency = 1
+blend_mode = 3
 albedo_color = Color(0.862745, 0.352941, 0.729412, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tdijs"]
@@ -29,6 +34,8 @@ albedo_color = Color(0.623529, 0, 0.243137, 1)
 albedo_color = Color(1, 0.00392157, 0, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yx8tk"]
+transparency = 1
+blend_mode = 3
 albedo_color = Color(0.92549, 0.729412, 0.462745, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0cs6t"]
@@ -103,7 +110,7 @@ material = SubResource("StandardMaterial3D_6o8mc")
 [node name="Control" type="Control" parent="." node_paths=PackedStringArray("scriptCode", "executionButton", "commadExecutor")]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 600.0
+offset_right = 382.0
 offset_bottom = 578.0
 script = ExtResource("5_auhvp")
 scriptCode = NodePath("VBoxContainer/CodeEdit")
@@ -123,3 +130,21 @@ highlight_current_line = true
 [node name="Button" type="Button" parent="Control/VBoxContainer"]
 layout_mode = 2
 text = "Execute"
+
+[node name="HelpLabel" type="RichTextLabel" parent="Control"]
+layout_mode = 0
+offset_left = 806.0
+offset_top = 2.0
+offset_right = 1150.0
+offset_bottom = 212.0
+fit_content = true
+script = ExtResource("6_uxxak")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(-0.312275, 0.647378, -0.695259, 0.251723, 0.762085, 0.596541, 0.916035, 0.011272, -0.400941, -28.1088, 0, 0)
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="."]
+transform = Transform3D(0.755228, -0.54013, 0.371335, 0.251723, 0.762085, 0.596541, -0.605199, -0.357051, 0.711512, -28.1088, 0, 157.715)
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.312275, 0.647378, -0.695259, 0.251723, 0.762085, 0.596541, 0.916035, 0.011272, -0.400941, -28.1088, 0, 0)
