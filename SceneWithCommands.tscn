@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://w8x3xd1hmwka"]
+[gd_scene load_steps=17 format=3 uid="uid://w8x3xd1hmwka"]
 
 [ext_resource type="Script" path="res://camera.gd" id="1_qudkr"]
 [ext_resource type="Script" path="res://CommandParserAndExecutor.gd" id="2_r0eia"]
 [ext_resource type="Script" path="res://StyleManager.gd" id="3_qj3ly"]
 [ext_resource type="Script" path="res://Style.gd" id="4_145dm"]
 [ext_resource type="Script" path="res://UIControl.gd" id="5_auhvp"]
+[ext_resource type="Script" path="res://HelpLabel.gd" id="6_uxxak"]
 
 [sub_resource type="Environment" id="Environment_iy8it"]
 background_mode = 1
@@ -109,7 +110,7 @@ material = SubResource("StandardMaterial3D_6o8mc")
 [node name="Control" type="Control" parent="." node_paths=PackedStringArray("scriptCode", "executionButton", "commadExecutor")]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 600.0
+offset_right = 382.0
 offset_bottom = 578.0
 script = ExtResource("5_auhvp")
 scriptCode = NodePath("VBoxContainer/CodeEdit")
@@ -129,6 +130,15 @@ highlight_current_line = true
 [node name="Button" type="Button" parent="Control/VBoxContainer"]
 layout_mode = 2
 text = "Execute"
+
+[node name="HelpLabel" type="RichTextLabel" parent="Control"]
+layout_mode = 0
+offset_left = 806.0
+offset_top = 2.0
+offset_right = 1150.0
+offset_bottom = 212.0
+fit_content = true
+script = ExtResource("6_uxxak")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(-0.312275, 0.647378, -0.695259, 0.251723, 0.762085, 0.596541, 0.916035, 0.011272, -0.400941, -28.1088, 0, 0)
