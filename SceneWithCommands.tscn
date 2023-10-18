@@ -129,3 +129,12 @@ highlight_current_line = true
 [node name="Button" type="Button" parent="Control/VBoxContainer"]
 layout_mode = 2
 text = "Execute"
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(-0.312275, 0.647378, -0.695259, 0.251723, 0.762085, 0.596541, 0.916035, 0.011272, -0.400941, -28.1088, 0, 0)
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="."]
+transform = Transform3D(0.755228, -0.54013, 0.371335, 0.251723, 0.762085, 0.596541, -0.605199, -0.357051, 0.711512, -28.1088, 0, 157.715)
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.312275, 0.647378, -0.695259, 0.251723, 0.762085, 0.596541, 0.916035, 0.011272, -0.400941, -28.1088, 0, 0)
