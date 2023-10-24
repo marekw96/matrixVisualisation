@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://w8x3xd1hmwka"]
+[gd_scene load_steps=8 format=3 uid="uid://w8x3xd1hmwka"]
 
 [ext_resource type="Script" path="res://camera.gd" id="1_qudkr"]
 [ext_resource type="Script" path="res://CommandParserAndExecutor.gd" id="2_r0eia"]
@@ -11,39 +11,6 @@
 background_mode = 1
 background_color = Color(0.701961, 0.705882, 0.694118, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s5p1q"]
-transparency = 1
-blend_mode = 3
-albedo_color = Color(0.231373, 0.764706, 0.541176, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5pt52"]
-albedo_color = Color(0.0823529, 0.486275, 0.392157, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e01e0"]
-albedo_color = Color(0.117647, 0.47451, 0.588235, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g03tn"]
-transparency = 1
-blend_mode = 3
-albedo_color = Color(0.862745, 0.352941, 0.729412, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tdijs"]
-albedo_color = Color(0.623529, 0, 0.243137, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o4bla"]
-albedo_color = Color(1, 0.00392157, 0, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yx8tk"]
-transparency = 1
-blend_mode = 3
-albedo_color = Color(0.92549, 0.729412, 0.462745, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0cs6t"]
-albedo_color = Color(0.921569, 0.819608, 0, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6o8mc"]
-albedo_color = Color(0.745098, 0.560784, 0.133333, 1)
-
 [node name="Camera3D" type="Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 5, 15)
 environment = SubResource("Environment_iy8it")
@@ -54,58 +21,46 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5766, 0)
 
 [node name="Commands" type="Node" parent="." node_paths=PackedStringArray("styleManager")]
 script = ExtResource("2_r0eia")
+commands = "create A 4 4 4 as black
+create B 3 3 3 as white
+setPosition B 5 0 0
+create C 3 3 3 as yellow
+setPosition C 9 0 0 "
 styleManager = NodePath("../StyleManager")
 
-[node name="StyleManager" type="Node" parent="." node_paths=PackedStringArray("styles")]
+[node name="StyleManager" type="Node" parent="."]
 script = ExtResource("3_qj3ly")
-styles = [NodePath("blue"), NodePath("red"), NodePath("yellow")]
 
 [node name="blue" type="Node" parent="StyleManager"]
 script = ExtResource("4_145dm")
-styleName = "blue"
-
-[node name="hidden" type="CSGBox3D" parent="StyleManager/blue"]
-material = SubResource("StandardMaterial3D_s5p1q")
-
-[node name="selected" type="CSGBox3D" parent="StyleManager/blue"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
-material = SubResource("StandardMaterial3D_5pt52")
-
-[node name="normal" type="CSGBox3D" parent="StyleManager/blue"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
-material = SubResource("StandardMaterial3D_e01e0")
+color = Color(0, 0, 1, 1)
 
 [node name="red" type="Node" parent="StyleManager"]
 script = ExtResource("4_145dm")
-styleName = "red"
-
-[node name="hidden" type="CSGBox3D" parent="StyleManager/red"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.91158, 0, -2.2083)
-material = SubResource("StandardMaterial3D_g03tn")
-
-[node name="selected" type="CSGBox3D" parent="StyleManager/red"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.422648, 0, -2.2083)
-material = SubResource("StandardMaterial3D_tdijs")
-
-[node name="normal" type="CSGBox3D" parent="StyleManager/red"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.762843, 0, -2.2083)
-material = SubResource("StandardMaterial3D_o4bla")
+color = Color(1, 0, 0, 1)
 
 [node name="yellow" type="Node" parent="StyleManager"]
 script = ExtResource("4_145dm")
-styleName = "yellow"
+color = Color(0.803922, 0.835294, 0, 1)
 
-[node name="hidden" type="CSGBox3D" parent="StyleManager/yellow"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.14142, 0, 0)
-material = SubResource("StandardMaterial3D_yx8tk")
+[node name="green" type="Node" parent="StyleManager"]
+script = ExtResource("4_145dm")
+color = Color(0, 1, 0, 1)
 
-[node name="selected" type="CSGBox3D" parent="StyleManager/yellow"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.78904, 0, 0)
-material = SubResource("StandardMaterial3D_0cs6t")
+[node name="pink" type="Node" parent="StyleManager"]
+script = ExtResource("4_145dm")
+color = Color(0.870588, 0, 0.705882, 1)
 
-[node name="normal" type="CSGBox3D" parent="StyleManager/yellow"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9863, 0, 0)
-material = SubResource("StandardMaterial3D_6o8mc")
+[node name="orange" type="Node" parent="StyleManager"]
+script = ExtResource("4_145dm")
+color = Color(0.847059, 0.317647, 0, 1)
+
+[node name="black" type="Node" parent="StyleManager"]
+script = ExtResource("4_145dm")
+
+[node name="white" type="Node" parent="StyleManager"]
+script = ExtResource("4_145dm")
+color = Color(1, 1, 1, 1)
 
 [node name="Control" type="Control" parent="." node_paths=PackedStringArray("scriptCode", "executionButton", "commadExecutor")]
 layout_mode = 3
@@ -147,4 +102,4 @@ transform = Transform3D(-0.312275, 0.647378, -0.695259, 0.251723, 0.762085, 0.59
 transform = Transform3D(0.755228, -0.54013, 0.371335, 0.251723, 0.762085, 0.596541, -0.605199, -0.357051, 0.711512, -28.1088, 0, 157.715)
 
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.312275, 0.647378, -0.695259, 0.251723, 0.762085, 0.596541, 0.916035, 0.011272, -0.400941, -28.1088, 0, 0)
+transform = Transform3D(-0.312275, 0.647378, -0.695259, 0.251723, 0.762085, 0.596541, 0.916035, 0.0112721, -0.40094, -28.1088, 0, 0)
