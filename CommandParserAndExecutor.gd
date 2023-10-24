@@ -46,6 +46,9 @@ func parseCommand(cmd):
 	if cmd[0] == "clearCubes":
 		clearCubes(cmd)
 		
+	if cmd[0] == "delete":
+		delete(cmd)
+		
 func createCube(name, x, y,z, styleName):
 	var cube = CubeCreator.new()
 	cube.width = x
@@ -129,6 +132,13 @@ func clearCubes(cmds):
 		cube['cube'].queue_free()
 	
 	cubes = []
+	
+func delete(cmds):
+	for entry in cubes:
+		if entry['name'] == cmds[1]:
+			entry['cube'].queue_free()
+			cubes.erase(entry)
+	
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

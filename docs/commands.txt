@@ -5,3 +5,4 @@ wait <time_s> - blocks script to some time
 setPosition <name> <x> <y> <z> - sets matrix position
 rotate <name> <x> <y> <z> - rotates matrix in degrees
 changeBlockStyle <matrix_name> <x> <y> <z> to <style> - change given cube to style: normal, hidden, selected
+delete <matrix_name> - removes given matrix
