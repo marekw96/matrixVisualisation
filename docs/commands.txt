@@ -1,7 +1,9 @@
 clearCubes - remove all matrixes
-create <name> <x> <y> <z> as <color> - makes matrix
+create <name> <x> <y> <z> as <color> - makes matrix x*y*z
 setAllCubesStyle <name> <style> - changes all cubes in matrix to specified style:normal, hidden, selected
 wait <time_s> - blocks script to some time
 setPosition <name> <x> <y> <z> - sets matrix position
 rotate <name> <x> <y> <z> - rotates matrix in degrees
 changeBlockStyle <matrix_name> <x> <y> <z> to <style> - change given cube to style: normal, hidden, selected
+delete <matrix_name> - removes given matrix
+resize <matrix_name> <x> <y> <z> - resize given matrix to new dimensions
