@@ -49,6 +49,9 @@ func parseCommand(cmd):
 	if cmd[0] == "delete":
 		delete(cmd)
 		
+	if cmd[0] == "resize":
+		resize(cmd)
+		
 func createCube(name, x, y,z, styleName):
 	var cube = CubeCreator.new()
 	cube.width = x
@@ -138,6 +141,23 @@ func delete(cmds):
 		if entry['name'] == cmds[1]:
 			entry['cube'].queue_free()
 			cubes.erase(entry)
+	
+func resize(cmds):
+	var cubeName = cmds[1]
+	var x = int(cmds[2])
+	var y = int(cmds[3])
+	var z = int(cmds[4])
+	
+	var cube = getCubeWithName(cubeName)
+	if cube == null:
+		print("resize unable to find cube with name", cubeName)
+		return
+		
+	cube.width = x
+	cube.height = y
+	cube.depth = z
+	cube.clear()
+	cube.generate()
 	
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
