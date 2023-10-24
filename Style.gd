@@ -1,25 +1,18 @@
 class_name Style extends Node
 
-@export var normal: StandardMaterial3D
-@export var hidden: StandardMaterial3D
-@export var selected: StandardMaterial3D
-@export var styleName: String
+@export var color: Color
+var normal: StandardMaterial3D
+var hidden: StandardMaterial3D
+var selected: StandardMaterial3D
 
 func _ready():
-	normal = getChildWithName("normal").material
-	hidden = getChildWithName("hidden").material
-	selected = getChildWithName("selected").material
+	normal = StandardMaterial3D.new()
+	normal.albedo_color = color
 	
-	print(name, " normal ", normal.albedo_color)
-	print(name, " hidden ", hidden.albedo_color)
-	print(name, " selected ", selected.albedo_color)
-
-	for child in get_children():
-		child.visible = false
-
-func getChildWithName(name):
-	for child in get_children():
-		if child.name == name:
-			return child
-			
-	return null
+	hidden = StandardMaterial3D.new()
+	hidden.albedo_color = normal.albedo_color
+	hidden.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	hidden.blend_mode = BaseMaterial3D.BLEND_MODE_MUL
+	
+	selected = StandardMaterial3D.new()
+	selected.albedo_color = normal.albedo_color.darkened(0.65)
