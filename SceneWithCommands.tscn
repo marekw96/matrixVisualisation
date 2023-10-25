@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://w8x3xd1hmwka"]
+[gd_scene load_steps=10 format=3 uid="uid://w8x3xd1hmwka"]
 
 [ext_resource type="Script" path="res://camera.gd" id="1_qudkr"]
 [ext_resource type="Script" path="res://CommandParserAndExecutor.gd" id="2_r0eia"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" path="res://Style.gd" id="4_145dm"]
 [ext_resource type="Script" path="res://UIControl.gd" id="5_auhvp"]
 [ext_resource type="Script" path="res://HelpLabel.gd" id="6_uxxak"]
+[ext_resource type="Script" path="res://ColorsUI.gd" id="7_ug7g2"]
+[ext_resource type="Script" path="res://NodesUI.gd" id="8_gqqdl"]
 
 [sub_resource type="Environment" id="Environment_iy8it"]
 background_mode = 1
@@ -86,14 +88,25 @@ highlight_current_line = true
 layout_mode = 2
 text = "Execute"
 
-[node name="HelpLabel" type="RichTextLabel" parent="Control"]
-layout_mode = 0
-offset_left = 806.0
-offset_top = 2.0
-offset_right = 1150.0
-offset_bottom = 212.0
+[node name="TabContainer" type="TabContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="Nodes" type="VBoxContainer" parent="Control/VBoxContainer/TabContainer" node_paths=PackedStringArray("commands")]
+visible = false
+layout_mode = 2
+script = ExtResource("8_gqqdl")
+commands = NodePath("../../../../Commands")
+
+[node name="Commands" type="RichTextLabel" parent="Control/VBoxContainer/TabContainer"]
+layout_mode = 2
 fit_content = true
 script = ExtResource("6_uxxak")
+
+[node name="Colors" type="VBoxContainer" parent="Control/VBoxContainer/TabContainer" node_paths=PackedStringArray("styleMangaer")]
+visible = false
+layout_mode = 2
+script = ExtResource("7_ug7g2")
+styleMangaer = NodePath("../../../../StyleManager")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(-0.312275, 0.647378, -0.695259, 0.251723, 0.762085, 0.596541, 0.916035, 0.011272, -0.400941, -28.1088, 0, 0)

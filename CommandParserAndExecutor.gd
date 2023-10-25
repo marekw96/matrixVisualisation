@@ -3,6 +3,9 @@ class_name CommandParserAndExecutor extends Node
 @export_multiline  var commands:String
 @export var styleManager: StyleManager
 
+signal addedMatrix(name, cube)
+signal removedMatrix(name)
+
 var cubes = []
 var lines = []
 var currentLine = 0
@@ -67,6 +70,7 @@ func createCube(name, x, y,z, styleName):
 	
 	add_child(cube)
 	cubes.append({"name": name, "cube": cube})
+	addedMatrix.emit(name, cube)
 	
 func wait(howLong):
 	waitTime = waitTime + float(howLong)
@@ -133,6 +137,7 @@ func rotate(cubeName, x,y,z):
 func clearCubes(cmds):
 	for cube in cubes:
 		cube['cube'].queue_free()
+		removedMatrix.emit(cube['name'])
 	
 	cubes = []
 	
@@ -141,6 +146,7 @@ func delete(cmds):
 		if entry['name'] == cmds[1]:
 			entry['cube'].queue_free()
 			cubes.erase(entry)
+			removedMatrix.emit(cmds[1])
 	
 func resize(cmds):
 	var cubeName = cmds[1]
@@ -159,6 +165,9 @@ func resize(cmds):
 	cube.clear()
 	cube.generate()
 	
+	
+func getAllCubes():
+	return cubes
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
